@@ -36,7 +36,7 @@ namespace OTSApps
     };
 }
 
-BOOST_DLL_ALIAS(OTSApps::BasicApp::create, create_plugin)
+BOOST_DLL_ALIAS(OTSApps::BasicApp::create, create_app)
 
 
 #endif //OPENTRADINGSYSTEM_BASICAPP_H
