@@ -36,7 +36,6 @@ public:
     static const char * BranchName();
 };
 
-#define REGISTER_VERSION(x) std::string GetVersion() override { return std::string(VersionMetadata::BranchName()) + "/" + VersionMetadata::Describe(); }\
-                        std::string GetName() override { return #x; }
+#define REGISTER_VERSION() std::string GetVersion() override { return std::string(VersionMetadata::BranchName()) + "/" + VersionMetadata::Describe(); }
 
 #endif //CPP_DERIBIT_GIT_H

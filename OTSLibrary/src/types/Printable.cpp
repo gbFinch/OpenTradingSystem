@@ -1,9 +1,8 @@
 //
 // Created by glebb on 12/23/2021.
 //
-//#include "../../include/types/Printable.h"
-#include <types/Printable.h>
-
+//#include "../../include/Types/Printable.h"
+#include <OTSLibrary/types/Printable.h>
 #include <string>
 
 namespace OTSLibrary

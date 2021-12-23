@@ -9,33 +9,34 @@
 
 namespace OTSLibrary
 {
-    enum class StrategyState    {
+    enum class AppState    {
         PAUSED,
         RUNNING,
         DELETED
     };
 
-    class Strategy    {
+    class App    {
     public:
-        virtual std::string GetVersion() = 0;
+        virtual std::string GetVersion() { return { "Unknown version" }; };
         virtual std::string GetName() = 0;
         virtual void HandleRun() = 0;
         virtual void HandlePause() = 0;
         virtual void HandleDelete() = 0;
 
-        void SetState(StrategyState state_) {
+        void SetState(AppState state_) {
             state = state_;
         }
 
         [[nodiscard]]
-        StrategyState GetState() const {
+        AppState GetState() const {
             return state;
         }
     private:
-        StrategyState state = StrategyState::PAUSED;
+        AppState state = AppState::PAUSED;
     };
 }
 
-#define REGISTER_PLUGIN(x) static boost::shared_ptr<Strategy> create() { return boost::shared_ptr<x>(new x()); }\
+#define REGISTER_PLUGIN(x) static boost::shared_ptr<App> create() { return boost::shared_ptr<x>(new x()); }\
+                        std::string GetName() override { return #x; }
 
 #endif //OPENTRADINGSYSTEM_APP_H

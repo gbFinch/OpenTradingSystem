@@ -8,6 +8,7 @@ find_package(nlohmann_json CONFIG REQUIRED)
 
 add_subdirectory(OTSLibrary)
 add_subdirectory(VersionControl)
+add_subdirectory(Apps)
 
 set(CMAKE_CXX_STANDARD 20)
 
