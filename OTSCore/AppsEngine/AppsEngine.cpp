@@ -43,7 +43,7 @@ void OTSCore::AppsEngine::UpdateAppsList() {
         {
             for (pugi::xml_node tool = doc.first_child(); tool; tool = tool.next_sibling())
             {
-                if (strcmp(tool.name(), "App") != 0) continue;
+                if (strcmp(tool.name(), "app") != 0) continue;
 
                 std::string AppId, AppName, AppPath;
 
