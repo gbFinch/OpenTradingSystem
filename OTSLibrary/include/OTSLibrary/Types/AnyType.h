@@ -12,13 +12,13 @@ namespace OTSLibrary
     class AnyType : public Printable{
     public:
         virtual ~AnyType() = default;
-        virtual bool Empty() const = 0;
-        virtual size_t GetHash() const = 0;
+        virtual bool empty() const = 0;
+        virtual size_t get_hash() const = 0;
     };
 
     inline size_t hash_value(const AnyType & value)
     {
-        return value.GetHash();
+        return value.get_hash();
     }
 
     inline size_t hash_value(int value)

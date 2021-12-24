@@ -11,6 +11,7 @@
 #include <unordered_map>
 
 #include <OTSLibrary/Apps/App.h>
+#include <OTSLibrary/Types/Uuid.h>
 
 namespace fs = boost::filesystem;
 

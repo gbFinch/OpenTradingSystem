@@ -16,8 +16,8 @@ namespace OTSLibrary
         Printable(const Printable &) = default;
         virtual ~Printable() = default;
         friend std::ostream & operator<<(std::ostream & strm, const Printable & printable);
-        virtual std::ostream & Print(std::ostream & strm) const = 0;
-        virtual std::string ToString() const = 0;
+        virtual std::ostream & print(std::ostream & strm) const = 0;
+        virtual std::string to_string() const = 0;
     };
 }
 

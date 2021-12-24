@@ -4,6 +4,7 @@
 
 #include <iostream>
 #include "AppsEngine/AppsEngine.h"
+#include <unordered_map>
 
 OTSCore::AppsEngine appsEngine;
 

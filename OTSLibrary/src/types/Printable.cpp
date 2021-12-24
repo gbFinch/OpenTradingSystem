@@ -9,6 +9,6 @@ namespace OTSLibrary
 {
     std::ostream & operator<<(std::ostream & strm, const Printable & printable)
     {
-        return printable.Print(strm);
+        return printable.print(strm);
     }
 }

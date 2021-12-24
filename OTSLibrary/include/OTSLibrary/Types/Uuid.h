@@ -12,17 +12,27 @@
 
 namespace OTSLibrary
 {
+    namespace detail {
+        template <typename TChar>
+        constexpr inline unsigned char hex2char(TChar const ch)
+        {
+            if (ch >= static_cast<TChar>('0') && ch <= static_cast<TChar>('9'))
+                return static_cast<unsigned char>(ch - static_cast<TChar>('0'));
+            if (ch >= static_cast<TChar>('a') && ch <= static_cast<TChar>('f'))
+                return static_cast<unsigned char>(10 + ch - static_cast<TChar>('a'));
+            if (ch >= static_cast<TChar>('A') && ch <= static_cast<TChar>('F'))
+                return static_cast<unsigned char>(10 + ch - static_cast<TChar>('A'));
+            return 0;
+        }
+    }
+
     class Uuid : public AnyType
     {
     public:
-        Uuid() : first(0), second(0) {}
-        Uuid(const Uuid & uuid) : first(uuid.first), second(uuid.second) {}
-        Uuid(const std::pair<uint64_t, uint64_t> & value) : first(value.first), second(value.second) {}
-        Uuid(const char * value);
-        Uuid(const char * value, size_t size);
-        ~Uuid() override {}
-
-        void Generate();
+        constexpr Uuid() = default;
+        constexpr Uuid(const Uuid & uuid) : first(uuid.first), second(uuid.second) {}
+        constexpr explicit Uuid(const std::pair<uint64_t, uint64_t> & value) : first(value.first), second(value.second) {}
+        explicit Uuid(const char * value);
 
         Uuid & operator=(const Uuid & uuid)
         {
@@ -31,15 +41,17 @@ namespace OTSLibrary
             return *this;
         }
 
-        static Uuid Create();
+        static Uuid create();
 
-        bool Empty() const override { return (first == 0 && second == 0); }
-        void Clear()
+        [[nodiscard]]
+        bool empty() const override { return (first == 0 && second == 0); }
+        void clear()
         {
             first = 0;
             second = 0;
         }
-        std::pair<uint64_t, uint64_t> GetIntPair() const;
+        [[nodiscard]]
+        std::pair<uint64_t, uint64_t> getIntPair() const;
 
     public:
         bool operator==(const Uuid & value) const { return (first == value.first) && (second == value.second); }
@@ -51,12 +63,16 @@ namespace OTSLibrary
         bool operator<=(const Uuid & value) const { return !(value < *this); }
         bool operator>=(const Uuid & value) const { return !operator<(value); }
     public:
-        virtual std::ostream & Print(std::ostream & strm) const override;
-        virtual size_t GetHash() const override;
-        virtual std::string ToString() const override;
+        std::ostream & print(std::ostream & strm) const override;
+
+        [[nodiscard]]
+        size_t get_hash() const override;
+
+        [[nodiscard]]
+        std::string to_string() const override;
     private:
-        uint64_t first;
-        uint64_t second;
+        uint64_t first{};
+        uint64_t second{};
     };
 }
 

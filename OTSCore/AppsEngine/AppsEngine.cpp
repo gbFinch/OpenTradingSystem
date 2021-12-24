@@ -23,7 +23,6 @@ void OTSCore::AppsEngine::UpdateAppsList() {
         return;
     }
 
-
     if (!fs::is_directory(manifestsDir))
     {
         std::cout<<"Manifest dir is not a directory" << std::endl;
@@ -55,7 +54,7 @@ void OTSCore::AppsEngine::UpdateAppsList() {
                     if (attrName == "name") AppName = attr.value();
                     if (attrName == "path") AppPath = attr.value();
                 }
-                fmt::print("App id = {}, App name = {}, App path = {}\n", AppId, AppName, AppPath);
+                fmt::print("App id = {}; App name = {}; App path = {}\n", AppId, AppName, AppPath);
                 if (AppId.empty() || AppName.empty() || AppPath.empty()) continue;
 
                 AppsInfo[AppId] = AppInfo{ AppName, manifestsDir / AppPath };
@@ -80,7 +79,7 @@ void OTSCore::AppsEngine::UpdateAppsCreators() {
             );
         }
         catch (const boost::system::system_error &err) {
-            std::cout << "couldn't create" << err.what() << std::endl;
+            std::cout << "couldn't create " << err.what() << std::endl;
         }
     }
 }
